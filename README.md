@@ -20,7 +20,7 @@ improvements and to clarify the syntax. Let's enter the topic with a recap of ex
 ## Extension Functions
 Extension functions are IMHO one of the most powerful features of Kotlin. It allows you to extend
 existing classes, even if you don't have access to the source code. There is no need to bloat classes with
-functions needed only in edge cases, just add extension functions to where you need them.  
+functions needed only in edge cases, just add extension functions to where you need them. 
 Also it allows you to create scoped lambdas, which can only be called on a given receiver, which is
 the base for creating DSLs in Kotlin. Extension functions are heavily used in the Kotlin standard library,
 let's take a the `max()` function as an example.
