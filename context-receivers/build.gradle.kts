@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm")
 }
 
 group = "com.github.ralfstuckert"
@@ -12,7 +12,6 @@ repositories {
 dependencies {
     implementation(project(":common"))
     implementation("org.slf4j:slf4j-api:2.0.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
 }
 
 kotlin {
