@@ -56,7 +56,7 @@ val user = User("Ralf")
 val user2 = User("Ralf2")
 
 // we can use the generic max function in the context of the comparator
-with(userComparator) {
+context(userComparator) {
    println(max(user, user2)) // Ralf2
 }
 ```

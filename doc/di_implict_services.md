@@ -8,8 +8,7 @@ class SomeService {
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun someFunction() {
-        val parameter = TODO("get parameter from somewhere")
-       performOperation(parameter)
+        performOperation("some parameter")
     }
     
     fun performOperation(param: String) {
@@ -31,9 +30,8 @@ class SomeService {
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun someFunction() {
-        val parameter = TODO("get parameter from somewhere")
-        with(log) {
-            performOperation(parameter)
+        with(log) {  // provide context using the with() function
+            performOperation("some parameter")
         }
     }
 
@@ -49,14 +47,33 @@ class OtherService {
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun otherFunction() {
-        val parameter = TODO("get parameter from somewhere")
-        with(log) {
-            performOperation(parameter)
+        context(log) {  // provide context using the context() function
+            performOperation("other parameter")
         }
     }
 }
 ```
 For sure, the logger is also a parameter, but the signature of the function has not changed and is much cleaner.
+
+Be aware the services use two different functions to provide context: `SomeService` uses the _old_ `with()`
+which is always used to pass receivers. But you can only pass one receiver using this function, if you want to 
+pass more, you have to nest them:
+
+```kotlin
+with(log) {
+    with(anotherContext) {
+        performOperation("other parameter")
+    }
+}
+```
+With the new `context()` function, you can simply write:
+```kotlin
+context(log, anotherContext) {
+    performOperation("other parameter")
+}
+```
+Some folks complaint in the discussion that this might be confusing, as you use the wording `context` for 
+both demanding and also providing context, what do you think?
 
 You can use context parameters for properties as well. Let's take a look at the following example. We have a class `Guest`
 which has a `firstName` and `lastName` property, which is loaded from a database. We also have a service called `GuestImageUriProvider`

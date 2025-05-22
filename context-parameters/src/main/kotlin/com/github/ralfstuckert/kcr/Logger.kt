@@ -8,7 +8,7 @@ class SomeService {
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun someFunction() {
-        with(log) {
+        with(log) {// provide context using the with() function
             performOperation("some parameter")
         }
     }
@@ -21,14 +21,21 @@ fun performOperation(param: String) {
     log.info("successfully performed operation with param: $param")
 }
 
+class OtherService {
+
+    private val log = LoggerFactory.getLogger(javaClass)
+
+    fun otherFunction() {
+        context(log) {  // provide context using the context() function
+            performOperation("other parameter")
+        }
+    }
+}
+
+
 
 interface LoggerContext {
     val log: Logger
-}
-
-context(loggerContext:LoggerContext)
-fun doSomethingInLoggerContext(param: String) {
-    log.info("Doing something in ServiceA")
 }
 
 context(loggerContext:LoggerContext)
@@ -36,7 +43,12 @@ val log: Logger
     get() = loggerContext.log
 
 
-class ServiceB:LoggerContext {
+context(loggerContext:LoggerContext)
+fun doSomethingInLoggerContext(param: String) {
+    log.info("Doing something in ServiceA")
+}
+
+class YetAnotherService:LoggerContext {
 
     override val log = LoggerFactory.getLogger(javaClass)
 

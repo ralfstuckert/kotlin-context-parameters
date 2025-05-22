@@ -9,6 +9,7 @@ Kotlin context parameters.
     - [Externally Implemented Interfaces / Type Classes](doc/type_classes.md)
     - [DSLs](doc/dsl.md)
 - [Bridge Functions](doc/bridge_functions.md)
+- [Lambdas](doc/lambdas.md)
 
 
 # Introduction
