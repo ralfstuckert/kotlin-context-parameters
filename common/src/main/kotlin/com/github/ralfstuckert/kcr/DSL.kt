@@ -1,20 +1,33 @@
 package com.github.ralfstuckert.kcr
 
-import java.time.LocalDate
+interface Request
+interface Response
 
-fun dsl(init: DSL.() -> Unit): DSL =
-    DSL().apply(init)
+//typealias RequestHandler = (Request, Response) -> Unit
+typealias RequestHandler = () -> Unit
 
-class DSL {
-    private val schedule = Schedule()
-    fun schedule(init: Schedule.() -> Unit) =
-        schedule.init()
+
+sealed class HttpMethod(val name:String) {
+    object GET: HttpMethod("GET")
+    object POST: HttpMethod("POST")
+    object PUT: HttpMethod("PUT")
+    object DELETE: HttpMethod("DELETE")
 }
 
-class Schedule() {
-    private val dates:MutableList<LocalDate> = mutableListOf<LocalDate>()
-    operator fun LocalDate.unaryPlus() {
-        dates.add(this)
+data class Route(
+    val method: HttpMethod,
+    val path: String,
+    val handler: RequestHandler)
+
+class RouteBuilder {
+    val routes = mutableListOf<Route>()
+
+    fun addRoute(method: HttpMethod, path: String, handler: RequestHandler) {
+        routes += Route(method, path, handler)
     }
+}
+
+fun routes(configure: RouteBuilder.() -> Unit) {
+    RouteBuilder().apply(configure)
 }
 

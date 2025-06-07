@@ -1,34 +1,23 @@
 package com.github.ralfstuckert.kcr
 
-import java.time.LocalDate
+import com.github.ralfstuckert.kcr.HttpMethod.*
 
-val oldSchedule = dsl {
-    schedule {
-        + LocalDate.of(2023, 10, 1)
-        + LocalDate.of(2023, 10, 12)
-    }
-}
-
-val newSchedule = dsl {
-    schedule {
-        -  1 Oktober 2023
-        - 12 Oktober 2023
-    }
+val oldRoutes = routes {
+    addRoute(GET, "/home", { println("GET /home handler") })
+    addRoute(POST, "/submit", { println("POST /submit handler") })
 }
 
 
-context(_:Schedule)
-infix fun Int.Oktober(year: Int): LocalDate =
-    LocalDate.of(year, 10,this)
 
-context(_:Schedule)
-infix fun Int.Dezember(year: Int): LocalDate =
-    LocalDate.of(year, 12,this)
+context(routeBuilder:RouteBuilder)
+infix fun Pair<HttpMethod, String>.handle(handler: () -> Unit) {
+    routeBuilder.addRoute(this.first, this.second, handler)
+}
 
-context(schedule:Schedule)
-operator fun LocalDate.unaryMinus():Boolean =
-    with (schedule) {
-        + this@unaryMinus
-        true
-    }
+val newRoutes = routes {
+    GET to "/home" handle { println("GET /home handler") }
+    POST to "/submit" handle { println("POST /submit handler") }
+}
+
+
 
