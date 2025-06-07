@@ -4,21 +4,23 @@ in order to use them. This might be undesirable in certain situations like DSLs.
 DSL from above that works fine with former context receivers:
 
 ```kotlin
-context(DSL)
-fun doSomethingWithDSL() {
-    schedule { 
-        - 6  Dezember 2025
+context(ServerBuilder)
+fun addServerConfig() {
+    routes {
+        GET to "/home" handle { println("GET /home handler") }
+        POST to "/submit" handle { println("POST /submit handler") }
     }
 }
 ```
 
-With context parameters, you have to explicitly name the DSL parameter and reference it; there is no implicit receiver:
+With context parameters, you have to explicitly name the `server` parameter and reference it; there is no implicit receiver:
 
 ```kotlin
-context(dsl:DSL)
-fun doSomethingWithDSL() {
-    dsl.schedule {
-        - 6  Dezember 2025
+context(server:ServerBuilder)
+fun addServerConfig() {
+    server.routes {
+        GET to "/home" handle { println("GET /home handler") }
+        POST to "/submit" handle { println("POST /submit handler") }
     }
 }
 ```
@@ -29,13 +31,14 @@ for you:
 [BridgeFunctions.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/BridgeFunctions.kt):
 
 ```kotlin
-context(dsl:DSL)
-fun schedule(init: Schedule.() -> Unit) = dsl.schedule(init)
+context(server:ServerBuilder)
+fun routes(block: RouteBuilder.() -> Unit) = server.routes(block)
 
-context(dsl:DSL)
-fun doSomethingWithDSL() {
-    schedule {
-        - 6  Dezember 2025
+context(server:ServerBuilder)
+fun addServerConfig() {
+    routes {
+        GET to "/home" handle { println("GET /home handler") }
+        POST to "/submit" handle { println("POST /submit handler") }
     }
 }
 ```
