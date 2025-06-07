@@ -1,15 +1,17 @@
 package com.github.ralfstuckert.kcr
 
-import com.github.ralfstuckert.kcr.DSL
+import com.github.ralfstuckert.kcr.HttpMethod.GET
+import com.github.ralfstuckert.kcr.HttpMethod.POST
 
 
-context(dsl:DSL)
-fun doSomethingWithDSL() {
-    schedule {
-        - 6  Dezember 2025
+context(server:ServerBuilder)
+fun addServerConfig() {
+    routes {
+        GET to "/home" handle { println("GET /home handler") }
+        POST to "/submit" handle { println("POST /submit handler") }
     }
 }
 
-context(dsl:DSL)
-fun schedule(init: Schedule.() -> Unit) = dsl.schedule(init)
+context(server:ServerBuilder)
+fun routes(block: RouteBuilder.() -> Unit) = server.routes(block)
 

@@ -19,6 +19,8 @@ data class Route(
     val path: String,
     val handler: RequestHandler)
 
+data class Server(val routes: List<Route>)
+
 class RouteBuilder {
     private val routes = mutableListOf<Route>()
 
@@ -29,7 +31,16 @@ class RouteBuilder {
     fun build(): List<Route> = routes.toList()
 }
 
-fun routes(configure: RouteBuilder.() -> Unit) {
-    RouteBuilder().apply(configure)
+class ServerBuilder {
+    private val routeBuilder = RouteBuilder()
+
+    fun routes(block: RouteBuilder.() -> Unit) {
+        routeBuilder.apply(block)
+    }
+
+    fun build(): Server = Server(routeBuilder.build())
 }
+
+fun server(block: ServerBuilder.() -> Unit): Server =
+    ServerBuilder().apply(block).build()
 

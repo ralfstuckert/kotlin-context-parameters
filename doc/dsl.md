@@ -7,30 +7,43 @@ following example, that let us configure routes for a webserver.
 ```kotlin
 typealias RequestHandler = () -> Unit
 
-enum class HttpMethod { GET, POST, PUT, DELETE }
-
 data class Route(
     val method: HttpMethod,
     val path: String,
     val handler: RequestHandler)
 
+data class Server(val routes: List<Route>)
+
 class RouteBuilder {
-    val routes = mutableListOf<Route>()
+    private val routes = mutableListOf<Route>()
 
     fun addRoute(method: HttpMethod, path: String, handler: RequestHandler) {
         routes += Route(method, path, handler)
     }
+
+    fun build(): List<Route> = routes.toList()
 }
 
-fun routes(configure: RouteBuilder.() -> Unit) {
-    RouteBuilder().apply(configure)
+class ServerBuilder {
+    private val routeBuilder = RouteBuilder()
+
+    fun routes(block: RouteBuilder.() -> Unit) {
+        routeBuilder.apply(block)
+    }
+
+    fun build(): Server = Server(routeBuilder.build())
 }
+
+fun server(block: ServerBuilder.() -> Unit): Server =
+    ServerBuilder().apply(block).build()
 
 ...
 
-routes {
-    addRoute(GET, "/home", { println("GET /home handler") })
-    addRoute(POST, "/submit", { println("POST /submit handler") })
+server {
+    routes {
+        addRoute(GET, "/home", { println("GET /home handler") })
+        addRoute(POST, "/submit", { println("POST /submit handler") })
+    }
 }
 ```
 
@@ -38,8 +51,8 @@ We want to enhance the readability of the DSL by allowing a more natural way to 
 call a function `addRoute()` explicitly. Our target DSL should look like this:
 
 ```kotlin
-routes {
-    GET to "/home" handle { println("GET /home handler") }
+    routes {
+        GET to "/home" handle { println("GET /home handler") }
 ```
 
 To achieve this, we need two infix functions `to` and `handle`. Kotlin already has an infix function `to` for 
@@ -70,9 +83,11 @@ infix fun Pair<HttpMethod, String>.handle(handler: () -> Unit) {
 That's it, our DSL now works as expected :-)
 
 ```kotlin
-routes {
-    GET to "/home" handle { println("GET /home handler") }
-    POST to "/submit" handle { println("POST /submit handler") }
+server {
+    routes {
+        GET to "/home" handle { println("GET /home handler") }
+        POST to "/submit" handle { println("POST /submit handler") }
+    }
 }
 ```
 
