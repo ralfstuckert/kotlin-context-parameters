@@ -8,14 +8,14 @@ val lambda1 : context(Logger, User) () -> Unit = {
     // TODO use logger and user
 }
 ```
-As you can see, they are not named, so do I reference them to e.g. log the given user? The Kotlin
+As you can see, they are not named, so how do I reference them to e.g. log the given user? The Kotlin
 standard lib provides a helper function that allows us to retrieve the context parameter of a given type:
 
 ```kotlin
 context(context: A)
 inline fun <A> contextOf(): A = context
 ```
-The trick is that this function uses a named reference `context` which then used as the return value.
+The trick is that this function uses a named reference `context` which is then used as the return value.
 We can use this function to retrieve the context parameters in our lambda:
 
 ```kotlin
