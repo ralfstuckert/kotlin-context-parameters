@@ -20,11 +20,13 @@ data class Route(
     val handler: RequestHandler)
 
 class RouteBuilder {
-    val routes = mutableListOf<Route>()
+    private val routes = mutableListOf<Route>()
 
     fun addRoute(method: HttpMethod, path: String, handler: RequestHandler) {
         routes += Route(method, path, handler)
     }
+
+    fun build(): List<Route> = routes.toList()
 }
 
 fun routes(configure: RouteBuilder.() -> Unit) {

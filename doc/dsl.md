@@ -1,7 +1,7 @@
 # DSLs
 
-Another use case for context parameters is to create resp. extends DSLs. Let's take a look at the following example, 
-that let us configure routes for a webserver.
+Another use case for context parameters given in the Keep is to create resp. extends DSLs. Let's take a look at the 
+following example, that let us configure routes for a webserver.
 
 [DSL.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/DSL.kt):
 ```kotlin
