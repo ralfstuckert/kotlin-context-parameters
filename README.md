@@ -71,17 +71,12 @@ it works in practice using the example above.
 [ViewExample.kt](../blob/main/context-receivers/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
 
 ```kotlin
-context(View)
-val Float.dp 
-    get() = this * resources.displayMetrics.density
-//    this@Float * this@View.resources.displayMetrics.density
+context(view:View)
+fun Float.dp()= this * view.resources.displayMetrics.density
+//        this@Float * this@View.resources.displayMetrics.density
 
-context(View)
-val Int.dp 
-    get() = this.toFloat().dp
-
-class MyView : View {
-    val height = 8.dp
+class SomeView : View {
+    val someDimension = 4f.dp()
 }
 ```
 
