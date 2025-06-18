@@ -71,8 +71,8 @@ it works in practice using the example above.
 [ViewExample.kt](../blob/main/context-receivers/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
 
 ```kotlin
-context(view:View)
-fun Float.dp()= this * view.resources.displayMetrics.density
+context(View)
+fun Float.dp()= this * resources.displayMetrics.density
 //        this@Float * this@View.resources.displayMetrics.density
 
 class SomeView : View {
@@ -97,18 +97,21 @@ our example above, we must write:
 [ViewExample.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
 ```kotlin
 context(view:View)
-val Float.dp 
-    get() = this * view.resources.displayMetrics.density
+fun Float.dp()= this * view.resources.displayMetrics.density
 ```
 So you must explictly use the named reference `view` to access the context receiver, you cannot use `this@View` anymore.
 At least if you need to reference the context receiver in the body of the function, if you just pass it as a
-scope for calling other functions, you can use anonymous parameters. Take the `val Int.dp` property from above,
-which delegates to the `Float.dp` function:
+scope for calling other functions, you can use anonymous parameters. Let’s add a `Int.dp()` variant that just 
+delegates to the `Float` extension. Since we do not reference the receiver (but just pass it), we can declare 
+the context parameter as anonymous:
 
 ```kotlin
 context(_:View)
-val Int.dp
-    get() = this.toFloat().dp
+fun Int.dp() = this.toFloat().dp()
+
+class SomeView : View {
+  val someDimension = 4.dp()
+}
 ```
 
 Next: [Use Cases](doc/use_cases.md)

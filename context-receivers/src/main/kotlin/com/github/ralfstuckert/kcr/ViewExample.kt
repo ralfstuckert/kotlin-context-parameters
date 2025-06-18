@@ -1,11 +1,10 @@
 package com.github.ralfstuckert.kcr
 
 
-class MyView : View {
-    val height = 8.dp
+class SomeView : View {
+    val someDimension = 4f.dp()
 
-    val Int.dp: Float
-        get() = this.toFloat() * resources.displayMetrics.density
+    fun Float.dp()= this * resources.displayMetrics.density
 
 }
 
@@ -16,6 +15,15 @@ val (Float, View).dp get() = this@Float * this@View.resources.displayMetrics.den
  */
 
 context(View)
+fun Float.dp()= this * resources.displayMetrics.density
+
+context(View)
+fun Int.dp() = this.toFloat().dp()
+
+
+// or even more readable as extension properties
+
+context(View)
 val Float.dp
     get() = this * resources.displayMetrics.density
 // explicitly written this@Float * this@View.resources.displayMetrics.density
@@ -23,7 +31,6 @@ val Float.dp
 context(View)
 val Int.dp
     get() = this.toFloat().dp
-
 
 
 
