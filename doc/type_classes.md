@@ -6,7 +6,7 @@ of traits. You can do something similar in Kotlin using context parameters. We w
 `Comparator` interfaces to illustrate this. We have a function `max()` that takes two parameters of type `T` and
 returns the maximum of the two. The type `T` must implement the `Comparable` interface, so we can compare the two values.
 
-[TypeClasses.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/TypeClasses.kt):
+[TypeClasses.kt](../context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/TypeClasses.kt):
 ```kotlin
 fun <T : Comparable<T>> max(x: T, y: T) = if (x > y) x else y
 ```

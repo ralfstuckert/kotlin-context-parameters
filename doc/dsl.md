@@ -3,7 +3,7 @@
 Another use case for context parameters given in the Keep is to create resp. extends DSLs. Let's take a look at the 
 following example, that let us configure routes for a webserver.
 
-[DSL.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/DSL.kt):
+[DSL.kt](../context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/DSL.kt):
 ```kotlin
 typealias RequestHandler = () -> Unit
 

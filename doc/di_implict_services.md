@@ -1,7 +1,7 @@
 # Depencency Injection / Implicit Services
 Let's take a look at the following example:
 
-[Logger.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Logger.kt):
+[Logger.kt](../context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Logger.kt):
 ```kotlin
 class SomeService {
 
@@ -24,7 +24,7 @@ the logger as a parameter, which is not very nice, since it is not a 'real' para
 technical dependency needed by the implementation of function. You could use a global logger, but that is not a good idea
 either, since you want to use a dedicated logger for each class. Here is where context parameters come into play.
 
-[Logger.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Logger.kt):
+[Logger.kt](../context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Logger.kt):
 ```kotlin
 class SomeService {
     private val log = LoggerFactory.getLogger(javaClass)
@@ -79,7 +79,7 @@ You can use context parameters for properties as well. Let's take a look at the 
 which has a `firstName` and `lastName` property, which is loaded from a database. We also have a service called `GuestImageUriProvider`
 that retrieves the URI of the guest image from another system.
 
-[DependencyInjection.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/DependencyInjection.kt):
+[DependencyInjection.kt](../context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/DependencyInjection.kt):
 ```kotlin
 data class Guest(val id:GuestId, val firstName: String, val lastName: String)
 
