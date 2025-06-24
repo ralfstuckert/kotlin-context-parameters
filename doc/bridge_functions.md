@@ -28,7 +28,7 @@ fun addServerConfig() {
 To come around this situation, the Keep suggests writing a so-called bridge function, which does the dereferencing
 for you:
 
-[BridgeFunctions.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/BridgeFunctions.kt):
+[BridgeFunctions.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/BridgeFunctions.kt):
 
 ```kotlin
 context(server:ServerBuilder)

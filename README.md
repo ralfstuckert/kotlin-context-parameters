@@ -68,7 +68,7 @@ as some kind of scope. The first implementation of [context receivers](https://g
 as they were called at that time, allowed specifying multiple receivers for a (extension) function. Let's see how
 it works in practice using the example above.
 
-[ViewExample.kt](../blob/main/context-receivers/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
+[ViewExample.kt](../main/context-receivers/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
 
 ```kotlin
 context(View)
@@ -94,7 +94,7 @@ Context receivers have been experimental for quite a while, and this time has be
 the use cases. Besides some restrictions, the main difference is that the parameters are now named. Using
 our example above, we must write:
 
-[ViewExample.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
+[ViewExample.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/ViewExample.kt):
 ```kotlin
 context(view:View)
 fun Float.dp()= this * view.resources.displayMetrics.density

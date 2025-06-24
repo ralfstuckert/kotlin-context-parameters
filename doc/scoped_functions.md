@@ -6,7 +6,7 @@ that is only valid in the scope of a transaction, so we require it to be called 
 In our case here, this is just a marker interface, and since we don't use it in our code, it can be anonymous. The `doSomething()`
 function calls another function `doSomeMoreStuff()`, which is supposed to be executed in the same transaction.
 
-[Transactions.kt](../blob/main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Transactions.kt):
+[Transactions.kt](../main/context-parameters/src/main/kotlin/com/github/ralfstuckert/kcr/Transactions.kt):
 ```kotlin
 interface Transaction
 
