@@ -1,6 +1,6 @@
 # Context Parameters
-This repository provides examples for the corresponding article on medium that let you explore the capabilities of 
-Kotlin context parameters. 
+This repository provides examples for the [corresponding article on medium](https://medium.com/@ralf.stuckert/kotlin-context-parameters-0156f2911462)
+that let you explore the capabilities of Kotlin context parameters. 
 
 - [Introduction](#Introduction)
 - [Use Cases](doc/use_cases.md)
