@@ -14,7 +14,7 @@ Kotlin context parameters.
 
 # Introduction
 Context receivers have been around in Kotlin since version 1.6.20 in experimental state,
-now they have entered beta state with version 2.2.0 under the name context parameters. The
+now they have entered preview state with version 2.2.0 under the name context parameters. The
 experimental phase has been used to get a better understanding of the use cases, to introduce
 improvements and to clarify the syntax. Let's enter the topic with a recap of extension functions.
 
