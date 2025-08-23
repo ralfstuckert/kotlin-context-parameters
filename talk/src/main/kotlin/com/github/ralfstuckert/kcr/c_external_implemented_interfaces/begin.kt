@@ -1,6 +1,6 @@
 package com.github.ralfstuckert.kcr.c_external_implemented_interfaces
 
-import com.github.ralfstuckert.kcr.d_function_types.User
+import com.github.ralfstuckert.kcr.b_scoped_functions.User
 
 
 fun <T : Comparable<T>> max(x: T, y: T) =
@@ -8,23 +8,6 @@ fun <T : Comparable<T>> max(x: T, y: T) =
 
 // region generic max
 // fun <T> max(x: T, y: T) = if (x > y) x else y
-// endregion
-
-// region contextual compareTo
-/*
-context(comparator: Comparator<T>)
-operator fun <T> T.compareTo(other: T): Int =
-    comparator.compare(this, other)
- */
-// endregion
-
-// region User comparator
-val userComparator = object : Comparator<User> {
-    override fun compare(o1: User, o2: User): Int {
-        // comparing name by length does not make much sense ;-)
-        return o1.name.length - o2.name.length
-    }
-}
 // endregion
 
 
