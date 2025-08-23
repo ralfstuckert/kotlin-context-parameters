@@ -7,7 +7,7 @@ class SomeService {
 
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun someFunction() =  {
+    fun someFunction() {
         performOperation("some parameter")
     }
 
