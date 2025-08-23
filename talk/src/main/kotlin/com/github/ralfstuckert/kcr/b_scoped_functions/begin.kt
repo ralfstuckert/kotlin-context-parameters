@@ -39,14 +39,14 @@ class ServiceA(val repository: DbRepository<User>) {
         doSomething()
     }
 
-    fun doSomething() {
+    private fun doSomething() {
         // some operations
         // repository.xyz()
         // ...
         doSomeMoreStuff()
     }
 
-    fun doSomeMoreStuff() {
+    private fun doSomeMoreStuff() {
         val user = User("Herbert")
         repository.save(user)
     }
