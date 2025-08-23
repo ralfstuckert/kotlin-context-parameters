@@ -1,14 +1,13 @@
 package com.github.ralfstuckert.kcr.d_function_types
 
+import com.github.ralfstuckert.kcr.b_scoped_functions.User
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-data class User(val name: String)
 
-val lambda : (User) -> Unit = { user ->
+val lambda: (User) -> Unit = { user ->
 //    log.info("user is $user")
 }
-
 
 
 fun main() {

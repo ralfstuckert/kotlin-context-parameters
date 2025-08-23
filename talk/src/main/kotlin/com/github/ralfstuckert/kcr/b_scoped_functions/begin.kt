@@ -1,7 +1,6 @@
 package com.github.ralfstuckert.kcr.b_scoped_functions
 
-import com.github.ralfstuckert.kcr.d_function_types.User
-
+data class User(val name: String)
 
 interface Transaction
 
@@ -36,7 +35,7 @@ class DbRepository<E> {
 
 class ServiceA(val repository: DbRepository<User>) {
 
-    fun perform()   {
+    fun perform() {
         doSomething()
     }
 

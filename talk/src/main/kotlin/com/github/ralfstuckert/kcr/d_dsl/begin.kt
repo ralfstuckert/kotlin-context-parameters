@@ -1,8 +1,7 @@
 package com.github.ralfstuckert.kcr.d_dsl
 
-import com.github.ralfstuckert.kcr.HttpMethod
-import com.github.ralfstuckert.kcr.HttpMethod.*
-import com.github.ralfstuckert.kcr.RouteBuilder
+import com.github.ralfstuckert.kcr.HttpMethod.GET
+import com.github.ralfstuckert.kcr.HttpMethod.POST
 import com.github.ralfstuckert.kcr.server
 
 val oldServer = server {
