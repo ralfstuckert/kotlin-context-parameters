@@ -15,10 +15,7 @@ fun main() {
     val logger = LoggerFactory.getLogger("console")
     val user = User("Ralf")
 
-
-    context(logger) {
-        lambda(user)
-    }
+    lambda(user)
 
 }
 
