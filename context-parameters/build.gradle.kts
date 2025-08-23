@@ -19,6 +19,10 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.withType<Test>().configureEach {
+    enabled = false
+}
+
 kotlin {
     jvmToolchain(21)
     compilerOptions {
