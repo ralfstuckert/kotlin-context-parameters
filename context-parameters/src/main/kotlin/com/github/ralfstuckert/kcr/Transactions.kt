@@ -15,7 +15,7 @@ class DbRepository<E> {
         with(DbTransaction()) {
             begin()
             return try {
-                val result = block(this)
+                val result = block()
                 commit()
                 result
             } catch (e: Exception) {
