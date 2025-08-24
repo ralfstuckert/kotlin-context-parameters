@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
 
 class SomeService {
 
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     fun someFunction() {
         performOperation("some parameter")
@@ -13,7 +13,7 @@ class SomeService {
 
     fun performOperation(param: String) {
         // do some operation and log result
-        log.info("successfully performed operation with param: $param")
+        logger.info("successfully performed operation with param: $param")
     }
 }
 
