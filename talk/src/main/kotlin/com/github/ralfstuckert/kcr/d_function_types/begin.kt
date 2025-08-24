@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 
 
 val lambda: (User) -> Unit = { user ->
-//    log.info("user is $user")
+//    logger.info("user is $user")
 }
 
 
