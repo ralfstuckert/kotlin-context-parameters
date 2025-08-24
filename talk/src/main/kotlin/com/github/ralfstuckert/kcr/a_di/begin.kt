@@ -20,7 +20,7 @@ class SomeService {
 
 // region other service
 class OtherService {
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     fun otherFunction() {
 //        performOperation("other parameter")
