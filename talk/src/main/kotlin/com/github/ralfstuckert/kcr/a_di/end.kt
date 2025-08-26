@@ -1,33 +1,37 @@
 package com.github.ralfstuckert.kcr.a_di
 
 /*
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.slf4j.LoggerFactory.getLogger
+
 
 // region some service
 class SomeService {
 
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val logger = getLogger(javaClass)
 
-    fun someFunction() = with(log) {
+    fun someFunction() = with(logger) {
         performOperation("some parameter")
     }
 
 }
 // endregion
 
-context(log: Logger)
+context(logger: Logger)
 fun performOperation(param: String) {
     // do some operation and log result
-    log.info("successfully performed operation with param: $param")
+    logger.info("successfully performed operation with param: $param")
 }
 
 
 // region other service
 class OtherService {
-    private val log = LoggerFactory.getLogger(javaClass)
+    private val logger = getLogger(javaClass)
 
     fun otherFunction() {
-        context(log) {
-            // use the context log to perform an operation
+        context(logger) {
+            // use the context logger to perform an operation
             performOperation("other parameter")
         }
     }
@@ -36,3 +40,4 @@ class OtherService {
 
 
  */
+
