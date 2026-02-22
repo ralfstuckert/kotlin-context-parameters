@@ -11,12 +11,14 @@ val oldServer = server {
     }
 }
 
+// region new syntax
 val newServer = server {
     routes {
 //        GET to "/home" handle { println("GET /home handler") }
 //        POST to "/submit" handle { println("POST /submit handler") }
     }
 }
+// endregion
 
 
 
