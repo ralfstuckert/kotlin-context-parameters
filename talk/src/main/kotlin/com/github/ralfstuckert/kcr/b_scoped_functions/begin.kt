@@ -15,7 +15,7 @@ class DbTransaction : Transaction {
 // region DbRepository
 class DbRepository<E> {
 
-    fun <T> transactional(block: context(Transaction) () -> T): T =
+    fun <T> transactional(block: context(Transaction) () -> T): T {
         with(DbTransaction()) {
             begin()
             return try {
@@ -27,6 +27,7 @@ class DbRepository<E> {
                 throw e
             }
         }
+    }
 
     fun save(entity: E): E = TODO()
 }
