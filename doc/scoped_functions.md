@@ -46,9 +46,9 @@ class DbRepository {
         with(DbTransaction()) {
             begin()
             return try {
-                val result = block(this)
-                commit()
-                result
+                block().also {
+                    commit()
+                }
             } catch (e: Exception) {
                 rollback()
                 throw e
