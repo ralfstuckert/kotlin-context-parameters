@@ -28,11 +28,6 @@ fun main() {
 
 }
 
-val userComparator = object : Comparator<User> {
-    override fun compare(o1: User, o2: User): Int {
-        return o1.name.length - o2.name.length
-    }
-}
-
+val userComparator = Comparator<User> { u1, u2 -> u1.name.length - u2.name.length }
 
  */
