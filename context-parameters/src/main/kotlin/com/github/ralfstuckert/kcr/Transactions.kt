@@ -14,10 +14,10 @@ class DbRepository<E> {
     fun <T> transactional(block: context(Transaction) () -> T): T =
         with(DbTransaction()) {
             begin()
-            return try {
-                val result = block()
-                commit()
-                result
+            try {
+                block().also {
+                    commit()
+                }
             } catch (e: Exception) {
                 rollback()
                 throw e
