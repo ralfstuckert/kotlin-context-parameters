@@ -1,29 +1,33 @@
 plugins {
-    kotlin("jvm")
+    base
 }
 
 group = "com.github.ralfstuckert"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+allprojects {
+    group = rootProject.group
+    version = rootProject.version
 }
 
-dependencies {
-    implementation("org.slf4j:slf4j-api:2.0.7")
-    testImplementation(kotlin("test"))
+val contextReceiversBuild = tasks.register("contextReceiversBuild") {
+    group = "build"
+    description = "Builds the legacy context-receivers demo with its standalone compiler setup."
+    dependsOn(gradle.includedBuild("context-receivers").task(":build"))
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks.register("runContextReceivers") {
+    group = "application"
+    description = "Runs the context-receivers demo."
+    dependsOn(gradle.includedBuild("context-receivers").task(":run"))
 }
-kotlin {
-    jvmToolchain(21)
+
+tasks.register("runContextParameters") {
+    group = "application"
+    description = "Runs the context-parameters demo."
+    dependsOn(":context-parameters:run")
 }
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    compilerOptions {
-        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3)
-        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3)
-        freeCompilerArgs.add("-Xcontext-parameters")
-    }
+
+tasks.named("build") {
+    dependsOn(":context-parameters:build", ":talk:build", contextReceiversBuild)
 }

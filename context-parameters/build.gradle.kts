@@ -1,4 +1,5 @@
 plugins {
+    application
     kotlin("jvm")
 }
 
@@ -30,4 +31,8 @@ kotlin {
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3)
         freeCompilerArgs.add("-Xcontext-parameters")
     }
+}
+
+application {
+    mainClass.set("com.github.ralfstuckert.kcr.ContextParametersDemoKt")
 }
